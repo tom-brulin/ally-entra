@@ -172,7 +172,14 @@ export class EntraDriver extends Oauth2Driver<EntraAccessToken, EntraScopes> {
   constructor(ctx: HttpContextContract, public config: EntraConfig) {
     super(ctx, config)
 
-    config.scopes = config.scopes || ['openid', 'profile', 'email', 'offline_access']
+    this.config.scopes = this.config.scopes || [
+      'user.read',
+      'User.ReadBasic.All',
+      'openid',
+      'profile',
+      'email',
+      'offline_access',
+    ]
 
     /**
      * Extremely important to call the following method to clear the
@@ -193,7 +200,16 @@ export class EntraDriver extends Oauth2Driver<EntraAccessToken, EntraScopes> {
     /**
      * Define user defined scopes or the default one's
      */
-    request.scopes(this.config.scopes || ['openid', 'profile', 'email', 'offline_access'])
+    request.scopes(
+      this.config.scopes || [
+        'user.read',
+        'User.ReadBasic.All',
+        'openid',
+        'profile',
+        'email',
+        'offline_access',
+      ]
+    )
 
     request.param('client_id', this.config.clientId)
     request.param('response_type', 'code')
