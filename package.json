@@ -1,6 +1,6 @@
 {
   "name": "ally-entra",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Entra driver for AdonisJS Ally",
   "main": "build/providers/index.js",
   "files": [
