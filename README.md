@@ -32,6 +32,25 @@ ENTRA_TENANT_ID: Env.schema.string.optional(),
 
 And don't forget to add these variables to your `.env` and `.env.example` files.
 
+Configure the driver inside the `config/ally.ts` file as follows
+```ts
+const allyConfig: AllyConfig = {
+  // ... other drivers
+  /*
+	|--------------------------------------------------------------------------
+	| Entra driver
+	|--------------------------------------------------------------------------
+	*/
+  entra: {
+    driver: 'entra',
+    clientId: Env.get('ENTRA_CLIENT_ID'),
+    clientSecret: Env.get('ENTRA_CLIENT_SECRET'),
+    tenantId: Env.get('ENTRA_TENANT_ID'),
+    callbackUrl: 'http://localhost:3333/entra/callback',
+  },
+}
+```
+
 ## Usage
 
 Entra Driver environment variables have some specific usage:
