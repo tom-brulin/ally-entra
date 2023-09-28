@@ -10,10 +10,13 @@
 |
 */
 
-import type { AllyUserContract, LiteralStringUnion } from '@ioc:Adonis/Addons/Ally'
+import type {
+  AllyUserContract,
+  LiteralStringUnion,
+  ApiRequestContract,
+} from '@ioc:Adonis/Addons/Ally'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { Oauth2Driver, ApiRequest, RedirectRequest } from '@adonisjs/ally/build/standalone'
-import { ApiRequestContract } from '@poppinss/oauth-client'
 
 /**
  * Define the access token object properties in this type. It
