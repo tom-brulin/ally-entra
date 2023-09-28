@@ -110,14 +110,18 @@ export class EntraDriver extends Oauth2Driver<EntraAccessToken, EntraScopes> {
    *
    * Do not define query strings in this URL.
    */
-  protected authorizeUrl = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize'
+  protected authorizeUrl = `https://login.microsoftonline.com/${
+    this.config.tenantId ?? 'common'
+  }/oauth2/v2.0/authorize`
 
   /**
    * The URL to hit to exchange the authorization code for the access token
    *
    * Do not define query strings in this URL.
    */
-  protected accessTokenUrl = 'https://login.microsoftonline.com/common/oauth2/v2.0/token'
+  protected accessTokenUrl = `https://login.microsoftonline.com/${
+    this.config.tenantId ?? 'common'
+  }/oauth2/v2.0/token`
 
   /**
    * The URL to hit to get the user details
@@ -169,11 +173,6 @@ export class EntraDriver extends Oauth2Driver<EntraAccessToken, EntraScopes> {
     super(ctx, config)
 
     config.scopes = config.scopes || ['openid', 'profile', 'email', 'offline_access']
-
-    if (this.config.tenantId) {
-      this.accessTokenUrl = `https://login.microsoftonline.com/${this.config.tenantId}/oauth2/v2.0/token`
-      this.authorizeUrl = `https://login.microsoftonline.com/${this.config.tenantId}/oauth2/v2.0/authorize`
-    }
 
     /**
      * Extremely important to call the following method to clear the
