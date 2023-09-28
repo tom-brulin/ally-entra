@@ -29,14 +29,7 @@ import { Oauth2Driver, ApiRequest, RedirectRequest } from '@adonisjs/ally/build/
  */
 export type EntraAccessToken = {
   token: string
-  type: string
-  token_type: string
-  scope: string
-  expires_in: number
-  ext_expires_in: number
-  access_token: string
-  refresh_token: string
-  id_token: string
+  type: 'bearer'
 }
 
 /**
@@ -94,6 +87,13 @@ export type UserFields = {
   email: string | null
   emailVerificationState: 'verified' | 'unverified' | 'unsupported'
   original: UserInfo | null
+}
+
+export interface UserFieldsAndToken extends UserFields {
+  token: {
+    token: string
+    type: 'bearer'
+  }
 }
 
 /**
@@ -295,14 +295,12 @@ export class EntraDriver extends Oauth2Driver<EntraAccessToken, EntraScopes> {
     }
   }
 
-  public async userFromToken(
-    accessToken: string
-  ): Promise<AllyUserContract<{ token: string; type: 'bearer' }>> {
-    const user: UserFields = await this.getUserInfo(accessToken)
+  public async userFromToken(token: string): Promise<UserFieldsAndToken> {
+    const user: UserFields = await this.getUserInfo(token)
 
     return {
       ...user,
-      token: { token: accessToken, type: 'bearer' as const },
+      token: { token, type: 'bearer' as const },
     }
   }
 }
