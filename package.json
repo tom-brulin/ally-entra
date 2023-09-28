@@ -1,6 +1,6 @@
 {
   "name": "ally-entra",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Entra driver for AdonisJS Ally",
   "main": "build/providers/index.js",
   "files": [
@@ -22,9 +22,11 @@
   },
   "keywords": [
     "adonisjs",
-    "adonis-ally"
+    "adonis-ally",
+    "entra",
+    "ally-entra"
   ],
-  "author": "",
+  "author": "tom-brulin",
   "license": "MIT",
   "devDependencies": {
     "@adonisjs/ally": "^4.0.0",

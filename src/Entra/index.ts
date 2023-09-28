@@ -278,7 +278,7 @@ export class EntraDriver extends Oauth2Driver<EntraAccessToken, EntraScopes> {
   public async user(
     callback?: (request: ApiRequest) => void
   ): Promise<AllyUserContract<EntraAccessToken>> {
-    const accessToken = await this.accessToken()
+    const accessToken = await this.accessToken(callback)
 
     /**
      * Allow end user to configure the request. This should be called after your custom
