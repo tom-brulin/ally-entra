@@ -168,6 +168,8 @@ export class EntraDriver extends Oauth2Driver<EntraAccessToken, EntraScopes> {
   constructor(ctx: HttpContextContract, public config: EntraConfig) {
     super(ctx, config)
 
+    config.scopes = config.scopes || ['openid', 'profile', 'email', 'offline_access']
+
     if (this.config.tenantId) {
       this.accessTokenUrl = `https://login.microsoftonline.com/${this.config.tenantId}/oauth2/v2.0/token`
       this.authorizeUrl = `https://login.microsoftonline.com/${this.config.tenantId}/oauth2/v2.0/authorize`
@@ -180,7 +182,6 @@ export class EntraDriver extends Oauth2Driver<EntraAccessToken, EntraScopes> {
      * DO NOT REMOVE THE FOLLOWING LINE
      */
     this.loadState()
-
     this.stateless()
   }
 
